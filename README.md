@@ -4,7 +4,7 @@ Remote Query in Data Grid 8 using protobuf schema
 Based on Red Hat Data Grid 8 remote quiery example https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.2/html/data_grid_developer_guide/search_api#remote_queries-querying
 
 
-1. Create the **books** cache in your Data Grid installation:
+1. Create the **books** cache in your Data Grid installation :
 ~~~
     <cache-container>
         <replicated-cache mode="SYNC" name="books">
@@ -17,15 +17,20 @@ Based on Red Hat Data Grid 8 remote quiery example https://access.redhat.com/doc
     </cache-container>
 ~~~
 **IMPORTANT:** the created cache must include the **book_sample.Book** indexed.entity
+2. Create an user and start the data grid instance:
+~~~
+${RHDG_HOME}/bin/cli user create admin -p admin 
+~~~
+**IMPORTANT:** the created user must be use the same credentials that you will define in your ConfigurationBuilder in RemoteQuery.java 
 3. Clone the project:
 ~~~
 git clone https://github.com/alexbarbosa1989/dg8remote.git
 ~~~
-3. Build the project:
+4. Build the project:
 ~~~
 mvn clean install
 ~~~
-4: Execute the remote query:
+5: Execute the remote query:
 ~~~
 mvn exec:exec
 ~~~
