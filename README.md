@@ -25,3 +25,20 @@ git clone https://github.com/alexbarbosa1989/dg8remote.git
 ~~~
 mvn clean install
 ~~~
+4: Execute the remote query:
+~~~
+mvn exec:exec
+~~~
+
+It will show as output the result list  from the query made on RemoteQuery.java, eg:
+~~~
+Cloud-Native Applications with Java and Quarkus
+2019
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.617 s
+[INFO] Finished at: 2022-01-15T17:20:43-05:00
+[INFO] ------------------------------------------------------------------------
+~~~
+
