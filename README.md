@@ -15,13 +15,13 @@ Based on Red Hat Data Grid 8 remote quiery example https://access.redhat.com/doc
         </replicated-cache>
     </cache-container>
 ~~~
-**IMPORTANT:** the created cache must include the **book_sample.Book** indexed.entity
+**IMPORTANT:** the created cache must include the **book_sample.Book** indexed-entity
 
 2. Create an user and start the data grid instance:
 ~~~
 ${RHDG_HOME}/bin/cli user create admin -p admin 
 ~~~
-**IMPORTANT:** the created user must be use the same credentials that you will define in your ConfigurationBuilder in RemoteQuery.java 
+**IMPORTANT:** the created user credentials will be set on the ConfigurationBuilder in RemoteQuery.java 
 
 3. Clone the project:
 ~~~
