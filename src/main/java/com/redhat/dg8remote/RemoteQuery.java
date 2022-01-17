@@ -45,7 +45,7 @@ public class RemoteQuery {
 
 	      List<Book> list = query.execute().list(); // Voila! We have our book back from the cache!
 	     
-	      System.out.println("Query resultset");
+	      System.out.println("Query resultset:");
 	      //iterate query result list for verifying
 	      for(Book itbook : list) {
 	    	  System.out.println(itbook.title);
