@@ -15,6 +15,21 @@ Based on Red Hat Data Grid 8 remote quiery example https://access.redhat.com/doc
         </replicated-cache>
     </cache-container>
 ~~~
+
+Json format:
+~~~
+{
+  "replicated-cache": {
+    "mode": "SYNC",
+    "indexing": {
+      "indexed-entities": [
+        "book_sample.Book"
+      ],
+      "enabled": true
+    }
+  }
+}
+~~~
 **IMPORTANT:** the created cache must include the **book_sample.Book** indexed-entity
 
 2. Create an user and start the data grid instance:
