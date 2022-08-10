@@ -79,30 +79,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--<plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>java</executable>
-                    <arguments>
-                        <argument>-Djava.net.preferIPv4Stack=true</argument>
-                        <argument>-Djava.util.logging.config.file=src/main/resources/logging.properties</argument>
-                        <argument>-classpath</argument>
-                        <classpath />
-                        <argument>com.redhat.dg8remote.RemoteQuery</argument>
-                    </arguments>
-                </configuration>
-            </plugin>-->
             
-                        <plugin>  
-            <!-- Build an executable JAR -->  
+                        <!--<plugin>  
             <groupId>org.apache.maven.plugins</groupId>  
             <artifactId>maven-jar-plugin</artifactId>  
             <version>3.1.0</version>  
@@ -110,9 +88,9 @@
                 <archive>
          		<manifest>
             			<addClasspath>true</addClasspath>
-            			<classpathPrefix>lib/</classpathPrefix>
+            			<classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
             			<mainClass>com.redhat.dg8remote.RemoteQuery</mainClass>
-          		</manifest> 
+          		</manifest>
           	</archive>
             </configuration>  
         </plugin>
@@ -123,18 +101,37 @@
     <executions>
         <execution>
             <id>copy</id>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
             <goals>
                 <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-                <outputDirectory>
-                    ${project.build.directory}/lib
-                </outputDirectory>
+                <outputDirectory>${project.build.directory}/${project.build.finalName}.lib</outputDirectory>
             </configuration>
         </execution>
     </executions>
-</plugin>
+</plugin> -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+        	<plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <appendAssemblyId>false</appendAssemblyId>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>com.redhat.dg8remote.RemoteQuery</mainClass>
+                    </manifest>
+                </archive>
+             </configuration>
+             </plugin>
 
             
 		</plugins>
