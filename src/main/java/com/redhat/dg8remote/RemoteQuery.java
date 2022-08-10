@@ -8,7 +8,9 @@ import java.util.List;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.Search;
+import org.infinispan.client.hotrod.configuration.SaslQop;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
+import org.infinispan.client.hotrod.impl.ConfigurationProperties;
 import org.infinispan.query.dsl.Query;
 import org.infinispan.query.dsl.QueryFactory;
 import org.infinispan.query.remote.client.ProtobufMetadataManagerConstants;
@@ -17,8 +19,10 @@ public class RemoteQuery {
 	public static void main(String[] args) throws Exception {
 	      ConfigurationBuilder clientBuilder = new ConfigurationBuilder();
 	      // RemoteQueryInitializerImpl is generated
-	      clientBuilder.addServer().host("127.0.0.1").port(11222)
-	            .security().authentication().username("admin").password("admin")
+	      clientBuilder.addServer().host("example-infinispan.dgtest.svc.cluster.local")
+	            .security().authentication().username("developer").password("opcQMSjuQFwiin9b")
+                               .saslMechanism("BASIC").realm("default").saslQop(SaslQop.AUTH)
+                               .ssl().trustStoreFileName("/mnt/secrets/truststore.jks").trustStorePassword("password".toCharArray())
 	            .addContextInitializers(new RemoteQueryInitializerImpl());
 
 	      RemoteCacheManager remoteCacheManager = new RemoteCacheManager(clientBuilder.build());
