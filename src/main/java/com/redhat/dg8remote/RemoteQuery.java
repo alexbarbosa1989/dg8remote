@@ -22,7 +22,7 @@ public class RemoteQuery {
 	      clientBuilder.addServer().host("example-infinispan.dgtest.svc.cluster.local")
 	            .security().authentication().username("developer").password("opcQMSjuQFwiin9b")
                                .saslMechanism("BASIC").realm("default").saslQop(SaslQop.AUTH)
-                               .ssl().trustStoreFileName("/mnt/secrets/truststore.jks").trustStorePassword("password".toCharArray())
+                               //.ssl().trustStoreFileName("truststore.jks").trustStorePassword("password".toCharArray())
 	            .addContextInitializers(new RemoteQueryInitializerImpl());
 
 	      RemoteCacheManager remoteCacheManager = new RemoteCacheManager(clientBuilder.build());
