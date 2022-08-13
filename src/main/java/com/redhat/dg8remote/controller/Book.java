@@ -1,5 +1,7 @@
 package com.redhat.dg8remote.controller;
 
+import java.util.Objects;
+
 import org.infinispan.protostream.annotations.ProtoDoc;
 import org.infinispan.protostream.annotations.ProtoFactory;
 import org.infinispan.protostream.annotations.ProtoField;
@@ -8,15 +10,15 @@ import org.infinispan.protostream.annotations.ProtoField;
 public class Book {
 	@ProtoDoc("@Field(index=Index.YES, analyze = Analyze.YES, store = Store.NO)")
 	@ProtoField(number = 1)
-	final String title;
+	String title;
 
 	@ProtoDoc("@Field(index=Index.YES, analyze = Analyze.YES, store = Store.NO)")
 	@ProtoField(number = 2)
-	final String description;
+	String description;
 
 	@ProtoDoc("@Field(index=Index.YES, analyze = Analyze.YES, store = Store.NO)")
 	@ProtoField(number = 3, defaultValue = "0")
-	final int publicationYear;
+	int publicationYear;
 
 	@ProtoFactory
 	Book(String title, String description, int publicationYear) {
@@ -24,6 +26,29 @@ public class Book {
 		this.description = description;
 		this.publicationYear = publicationYear;
 	}
-	// public Getter methods omitted for brevity
+
+	@Override
+   	public String toString() {
+      	return "Book{" +
+            "title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", publicationYear='" + publicationYear + '\'' +
+            '}';
+   	}
+
+	@Override
+	public int hashCode() {
+		  return Objects.hash(title, description,publicationYear);
+	}
+
+	@Override
+   	public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Book that = (Book) o;
+      return Objects.equals(title, that.title) &&
+             Objects.equals(description,that.description) &&
+			 Objects.equals(publicationYear, that.publicationYear);
+   }
 
 }
