@@ -50,7 +50,7 @@ mvn clean install
 
 5. Execute the remote query:
 ~~~
-mvn exec:exec
+curl -X GET http://${HOST_URL}/redhat/query-cache/
 ~~~
 
 It will show as output the result list  from the query made on RemoteQuery.java, eg:
