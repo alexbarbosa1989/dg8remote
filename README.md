@@ -5,27 +5,39 @@ Based on Red Hat Data Grid 8 remote quiery example https://access.redhat.com/doc
 
 1. Create the **books** cache in your Data Grid installation :
 ~~~
-    <cache-container>
-        <replicated-cache mode="SYNC" name="books">
-            <indexing enabled="true">
-                <indexed-entities>
-                    <indexed-entity>book_sample.Book</indexed-entity>
-                </indexed-entities>
-            </indexing>
-        </replicated-cache>
-    </cache-container>
+            <replicated-cache name="books" mode="SYNC" statistics="true">
+                <encoding>
+                    <key media-type="application/x-protostream"/>
+                    <value media-type="application/x-protostream"/>
+                </encoding>
+                <indexing enabled="true">
+                    <indexed-entities>
+                        <indexed-entity>book_sample.Book</indexed-entity>
+                    </indexed-entities>
+                </indexing>
+            </replicated-cache>
 ~~~
 
 Json format:
 ~~~
 {
+
   "replicated-cache": {
     "mode": "SYNC",
+    "statistics": true,
+    "encoding": {
+      "key": {
+        "media-type": "application/x-protostream"
+      },
+      "value": {
+        "media-type": "application/x-protostream"
+      }
+    },
     "indexing": {
+      "enabled": true,
       "indexed-entities": [
         "book_sample.Book"
-      ],
-      "enabled": true
+      ]
     }
   }
 }
@@ -55,13 +67,13 @@ curl -X GET http://${HOST_URL}/redhat/query-cache/
 
 It will show as output the result list  from the query made on RemoteQuery.java, eg:
 ~~~
-Cloud-Native Applications with Java and Quarkus
-2019
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.617 s
-[INFO] Finished at: 2022-01-15T17:20:43-05:00
-[INFO] ------------------------------------------------------------------------
+- Book title 10 - 2022
 ~~~
 
+In the springboot log will show the query output as well
+~~~
+2022-08-14 14:51:29.446  INFO 8270 --- [           main] c.r.dg8remote.RemoteQueryApplication     : Started RemoteQueryApplication in 3.434 seconds (JVM running for 3.886)
+...
+Book title 10
+2022
+~~~

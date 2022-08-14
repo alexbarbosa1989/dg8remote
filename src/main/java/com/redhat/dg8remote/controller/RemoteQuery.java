@@ -39,17 +39,17 @@ public class RemoteQuery {
 		// Obtain the 'books' remote cache
 		RemoteCache<String, Book> remoteCache = remoteCacheManager.getCache("books");
 
-		// Add some Books
+		// Add some Books using a HashMap
 		Map<String, Book> books = new HashMap<>();
-		books.put("1", new Book("Infinispan in Action", "Learn Infinispan with using it", 2015));
-		books.put("2", new Book("Cloud-Native Applications with Java and Quarkus",
-				"Build robust and reliable cloud applications", 2019));
+		for(int i=0; i<30;i++){
+			books.put(i+"", new Book("Book title "+i, "Book description "+i, 2022));
+		}
 
 		remoteCache.putAll(books);
 
 		// Execute a full-text query
 		QueryFactory queryFactory = Search.getQueryFactory(remoteCache);
-		Query<Book> query = queryFactory.create("FROM book_sample.Book WHERE title:'java'");
+		Query<Book> query = queryFactory.create("FROM book_sample.Book WHERE title:'10'");
 
 		List<Book> list = query.execute().list(); // Voila! We have our book back from the cache!
 
