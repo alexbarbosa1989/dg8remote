@@ -1,7 +1,6 @@
 package com.redhat.dg8remote.controller;
 
 import org.infinispan.protostream.GeneratedSchema;
-import org.infinispan.protostream.SerializationContextInitializer;
 import org.infinispan.protostream.annotations.AutoProtoSchemaBuilder;
 
 // book.proto file is generated in the compilation automatically
