@@ -3,7 +3,6 @@ package com.redhat.dg8remote.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
@@ -20,12 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class RemoteQuery {
 
 	private final RemoteCacheManager remoteCacheManager;
-	private final Random random;
 
 	@Autowired
 	public RemoteQuery(RemoteCacheManager cacheManager) {
 		this.remoteCacheManager = cacheManager;
-		random = new Random();
 		// Upload the generated schema in the server
 		RemoteCache<String, String> metadataCache = this.remoteCacheManager
 				.getCache(ProtobufMetadataManagerConstants.PROTOBUF_METADATA_CACHE_NAME);
