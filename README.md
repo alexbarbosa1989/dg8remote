@@ -60,7 +60,13 @@ git clone https://github.com/alexbarbosa1989/dg8remote.git
 mvn clean install
 ~~~
 
-5. Execute the remote query:
+5. Execute the springboot application jar:
+
+~~~
+java -jar target/remote-query-0.0.1-SNAPSHOT.jar 
+~~~
+
+6. Execute the remote query:
 ~~~
 curl -X GET http://${HOST_URL}/redhat/query-cache/
 ~~~
