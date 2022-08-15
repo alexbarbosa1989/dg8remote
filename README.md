@@ -44,11 +44,21 @@ Json format:
 ~~~
 **IMPORTANT:** the created cache must include the **book_sample.Book** indexed-entity
 
-2. Create an user and start the data grid instance:
+2. Create an Openshift project and deploy a Data Grid Cluster via Operator. Here is a CR YAML example used for this example:
 ~~~
-${RHDG_HOME}/bin/cli user create admin -p admin 
+apiVersion: infinispan.org/v1
+kind: Infinispan
+metadata:
+  name: example-infinispan
+  namespace: dgtest
+spec:
+  expose:
+    type: LoadBalancer
+  service:
+    type: DataGrid
+  replicas: 2
 ~~~
-**IMPORTANT:** the created user credentials will be set on the ConfigurationBuilder in RemoteQuery.java 
+**IMPORTANT:** the Data Grid credentials must be set on the **application.properties** file (/src/main/resources/application.properties)
 
 3. Clone the project:
 ~~~
