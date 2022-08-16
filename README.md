@@ -1,6 +1,6 @@
 # Remote Query in Data Grid 8 using protobuf schema
 
-Based on Red Hat Data Grid 8 remote quiery example https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.2/html/data_grid_developer_guide/search_api#remote_queries-querying
+Based on Red Hat Data Grid 8 remote query example https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.3/html/querying_data_grid_caches/query-remote#querying-hot-rod_query-remote
 
 
 1. Create the **books** cache in your Data Grid installation :
