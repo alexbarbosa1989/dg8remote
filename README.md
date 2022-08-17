@@ -17,7 +17,6 @@ spec:
     type: DataGrid
   replicas: 2
 ~~~
-**IMPORTANT:** the Data Grid credentials must be set on the **application.properties** file (/src/main/resources/application.properties)
 
 2. Create the **books** cache in your Data Grid installation :
 ~~~
@@ -64,6 +63,8 @@ Json format:
 ~~~
 git clone https://github.com/alexbarbosa1989/dg8remote.git
 ~~~
+
+**IMPORTANT:** the Data Grid credentials must be set on the **application.properties** file (/src/main/resources/application.properties) before build the project
 
 4. Build the project:
 ~~~
