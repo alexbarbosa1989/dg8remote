@@ -19,6 +19,7 @@ spec:
 ~~~
 
 2. Create the **books** cache in your Data Grid installation :
+XML format:
 ~~~
             <replicated-cache name="books" mode="SYNC" statistics="true">
                 <encoding>
@@ -36,7 +37,6 @@ spec:
 Json format:
 ~~~
 {
-
   "replicated-cache": {
     "mode": "SYNC",
     "statistics": true,
@@ -57,7 +57,7 @@ Json format:
   }
 }
 ~~~
-**IMPORTANT:** the created cache must include the **book_sample.Book** indexed-entity
+**IMPORTANT:** the created **books** cache must include the **book_sample.Book** indexed-entity.
 
 3. Clone the project:
 ~~~
