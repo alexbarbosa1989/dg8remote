@@ -26,7 +26,7 @@ XML format:
                     <key media-type="application/x-protostream"/>
                     <value media-type="application/x-protostream"/>
                 </encoding>
-                <indexing enabled="true">
+                <indexing>
                     <indexed-entities>
                         <indexed-entity>book_sample.Book</indexed-entity>
                     </indexed-entities>
@@ -49,7 +49,6 @@ Json format:
       }
     },
     "indexing": {
-      "enabled": true,
       "indexed-entities": [
         "book_sample.Book"
       ]
