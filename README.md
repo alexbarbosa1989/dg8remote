@@ -22,7 +22,7 @@ spec:
 XML format:
 ~~~
             <replicated-cache name="books" mode="SYNC" statistics="true">
-                <indexing>
+                <indexing enabled="true">
                     <indexed-entities>
                         <indexed-entity>book_sample.Book</indexed-entity>
                     </indexed-entities>
@@ -37,6 +37,7 @@ Json format:
     "mode": "SYNC",
     "statistics": true,
     "indexing": {
+      "enabled": true,
       "indexed-entities": [
         "book_sample.Book"
       ]
