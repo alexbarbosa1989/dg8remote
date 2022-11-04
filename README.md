@@ -40,7 +40,7 @@ ${RHDG_HOME}/bin/cli user create admin -p admin
 
 3. Clone the project:
 ~~~
-git clone https://github.com/alexbarbosa1989/dg8remote.git
+git clone -b main https://github.com/alexbarbosa1989/dg8remote.git
 ~~~
 
 4. Build the project:
