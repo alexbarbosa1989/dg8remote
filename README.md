@@ -49,7 +49,7 @@ Json format:
 
 3. Clone the project:
 ~~~
-git clone https://github.com/alexbarbosa1989/dg8remote.git
+git clone -b openshift https://github.com/alexbarbosa1989/dg8remote.git
 ~~~
 
 **IMPORTANT:** the Data Grid credentials must be set on the **application.properties** file (/src/main/resources/application.properties) before build the project
