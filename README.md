@@ -8,7 +8,7 @@ Based on Red Hat Data Grid 8 remote query example https://access.redhat.com/docu
 apiVersion: infinispan.org/v1
 kind: Infinispan
 metadata:
-  name: example-infinispan
+  name: infinispan-test
   namespace: dgtest
 spec:
   expose:
