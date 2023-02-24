@@ -1,99 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.redhat</groupId>
-	<artifactId>remote-query</artifactId>
+	<groupId>dg8remote</groupId>
+	<artifactId>dg8remote</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>remote-query</name>
-	<description>Remote Query Data Grid</description>
-	<properties>
-		<java.version>11</java.version>
-		<infinispan>13.0.10.Final-redhat-00001</infinispan>
-		<infinispan.boot>13.0.10.Final-redhat-00001</infinispan.boot>
-		<version.protostream>4.4.1.Final-redhat-00004</version.protostream>
-	        <!--for OCP deployment -->
-                <fabric8.generator.from>registry.redhat.io/openjdk/openjdk-11-rhel8:latest</fabric8.generator.from>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+	<name>dg8remote</name>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-bom</artifactId>
-			<version>${infinispan}</version>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-spring-boot-starter-remote</artifactId>
-			<version>${infinispan.boot}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+	<properties>
+		<version.infinispan>14.0.2.Final-redhat-00001</version.infinispan>
+		<version.protostream>4.5.0.Final-redhat-00002</version.protostream>
+	</properties>
+
+	<dependencies>
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-client-hotrod</artifactId>
-			<version>${infinispan}</version>
+			<version>${version.infinispan}</version>
 		</dependency>
 		<dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-api</artifactId>
+			<version>${version.infinispan}</version>
+        </dependency>
+
+		<dependency>
 			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-commons</artifactId>
-			<version>${infinispan}</version>
+			<artifactId>infinispan-remote-query-client</artifactId>
+			<version>${version.infinispan}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-query-dsl</artifactId>
-			<version>${infinispan}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-spring5-common</artifactId>
-			<version>${infinispan}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-spring5-remote</artifactId>
-			<version>${infinispan}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-spring5-embedded</artifactId>
-			<version>${infinispan}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-core</artifactId>
-			<version>${infinispan}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-remote-query-client</artifactId>
+			<version>${version.infinispan}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.infinispan.protostream</groupId>
@@ -102,79 +41,89 @@
 		</dependency>
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.infinispan</groupId>
+				<artifactId>infinispan-bom</artifactId>
+				<version>${version.infinispan}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<configuration>
+						<source>11</source>
+						<target>11</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.6.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.commonjava.maven.plugins</groupId>
+				<artifactId>project-sources-maven-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>project-sources-archive</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>archive</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-Djava.net.preferIPv4Stack=true</argument>
+                        <argument>-Djava.util.logging.config.file=src/main/resources/logging.properties</argument>
+                        <argument>-classpath</argument>
+                        <classpath />
+                        <argument>com.redhat.dg8remote.RemoteQuery</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
 	<repositories>
 		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
+			<id>redhat-ga-repository</id>
+			<name>Red Hat GA Repository</name>
+			<url>https://maven.repository.redhat.com/ga/</url>
 		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-        <repository>
-            <id>redhat-ga-repository</id>
-            <name>Red Hat GA Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-        </repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
+			<id>redhat-ga-repository</id>
+			<name>Red Hat GA Repository</name>
+			<url>https://maven.repository.redhat.com/ga/</url>
 		</pluginRepository>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-
-        <pluginRepository>
-            <id>redhat-ga-repository</id>
-            <name>Red Hat GA Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-        </pluginRepository>
 	</pluginRepositories>
-
-    <!-- for OCP deployment-->
-    <profiles>
-        <profile>
-          <id>openshift</id>
-          <build>
-            <plugins>
-              <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>fabric8-maven-plugin</artifactId>
-                <version>4.4.1</version>
-                <executions>
-                  <execution>
-                    <goals>
-                      <goal>resource</goal>
-                      <goal>build</goal>
-                    </goals>
-                  </execution>
-                </executions>
-              </plugin>
-            </plugins>
-          </build>
-        </profile>
-    </profiles>
 
 </project>
