@@ -8,23 +8,31 @@
 	<name>dg8remote</name>
 
 	<properties>
-		<version.infinispan>12.1.8.Final-redhat-00002</version.infinispan>
-		<version.protostream>4.4.1.Final-redhat-00004</version.protostream>
+		<version.infinispan>14.0.2.Final-redhat-00001</version.infinispan>
+		<version.protostream>4.5.0.Final-redhat-00002</version.protostream>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-client-hotrod</artifactId>
+			<version>${version.infinispan}</version>
 		</dependency>
+		<dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-api</artifactId>
+			<version>${version.infinispan}</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-remote-query-client</artifactId>
+			<version>${version.infinispan}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-query-dsl</artifactId>
+			<version>${version.infinispan}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.infinispan.protostream</groupId>
@@ -53,8 +61,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.1</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>11</source>
+						<target>11</target>
 					</configuration>
 				</plugin>
 				<plugin>
