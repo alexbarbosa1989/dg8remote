@@ -38,9 +38,9 @@ public class RemoteQuery {
 
 	      // Execute a full-text query
 	      QueryFactory queryFactory = Search.getQueryFactory(remoteCache);
-	      Query<Book> query = queryFactory.create("FROM book_sample.Book WHERE title LIKE :contains");
+	      Query<Book> query = queryFactory.create("FROM book_sample.Book WHERE publicationYear = :year");
 
-	      query.setParameter("contains","%java%");
+	      query.setParameter("year",2015);
 
 	      List<Book> list = query.execute().list(); // Voila! We have our book back from the cache!
 	     
