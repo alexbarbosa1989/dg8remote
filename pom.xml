@@ -19,10 +19,10 @@
 			<version>${version.infinispan}</version>
 		</dependency>
 		<dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-api</artifactId>
+                        <groupId>org.infinispan</groupId>
+                        <artifactId>infinispan-api</artifactId>
 			<version>${version.infinispan}</version>
-        </dependency>
+                </dependency>
 
 		<dependency>
 			<groupId>org.infinispan</groupId>
