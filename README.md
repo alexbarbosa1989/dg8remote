@@ -22,6 +22,10 @@ spec:
 XML format:
 ~~~
             <replicated-cache name="books" mode="SYNC" statistics="true">
+                <encoding>
+		    <key media-type="application/x-protostream"/>
+		    <value media-type="application/x-protostream"/>
+	        </encoding>
                 <indexing enabled="true">
                     <indexed-entities>
                         <indexed-entity>book_sample.Book</indexed-entity>
@@ -33,14 +37,24 @@ XML format:
 Json format:
 ~~~
 {
-  "replicated-cache": {
-    "mode": "SYNC",
-    "statistics": true,
-    "indexing": {
-      "enabled": true,
-      "indexed-entities": [
-        "book_sample.Book"
-      ]
+  "books": {
+    "replicated-cache": {
+      "mode": "SYNC",
+      "statistics": true,
+      "encoding": {
+        "key": {
+          "media-type": "application/x-protostream"
+        },
+        "value": {
+          "media-type": "application/x-protostream"
+        }
+      },
+      "indexing": {
+        "enabled": true,
+        "indexed-entities": [
+          "book_sample.Book"
+        ]
+      }
     }
   }
 }
