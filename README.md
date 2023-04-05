@@ -29,7 +29,7 @@ mvn clean package oc:build -Popenshift
 mvn oc:apply -Popenshift
 ~~~
 
-The other steps remains exactly the same as in the [Red Hat Developer blog](https://developers.redhat.com/articles/2022/05/31/integrate-spring-boot-application-red-hat-data-grid)
+The other steps remains exactly the same as in the [Red Hat Developer blog](https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8)
 
 # Changes summary:
 - Implementing new Data Grid native indexing annotations (https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.4/html/red_hat_data_grid_8.4_release_notes/rhdg-releases#data_grid_native_indexing_annotations)
