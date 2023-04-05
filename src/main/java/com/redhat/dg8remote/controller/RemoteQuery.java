@@ -42,7 +42,7 @@ public class RemoteQuery {
 		// Add some Books using a HashMap
 		Map<String, Book> books = new HashMap<>();
 		for(int i=0; i<30;i++){
-			books.put(i+"", new Book("Book title "+i, "Book description "+i, 2022));
+			books.put(i+"", new Book("Book title "+i, "Book description "+i, 1990+i));
 		}
 
 		remoteCache.putAll(books);
@@ -51,7 +51,7 @@ public class RemoteQuery {
 		QueryFactory queryFactory = Search.getQueryFactory(remoteCache);
 		Query<Book> query = queryFactory.create("FROM book_sample.Book WHERE publicationYear = :year");
 
-	    query.setParameter("year",2022);
+	    query.setParameter("year",2010);
 
 		List<Book> list = query.execute().list(); // Voila! We have our book back from the cache!
 
