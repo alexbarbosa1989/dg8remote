@@ -1,22 +1,47 @@
 # Remote Query in Data Grid 8 using protobuf schema
 
-Based on Red Hat Data Grid 8 remote query example https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.3/html/querying_data_grid_caches/query-remote#querying-hot-rod_query-remote
+For current branch, most of the steps remain as-is in the Red Hat Developer blog: https://developers.redhat.com/articles/2022/05/31/integrate-spring-boot-application-red-hat-data-grid
+
+#For Openshift deployment
+**In order to deploy current branch project, there should be make below described Steps Chages**
+1. In step [Configuring the application to use the data grid cluster](https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8#configuring_the_application_to_use_the_data_grid_cluster):
+Instead of clone the **openshift** brach, must clone **RHDG_8.4** branch:
+
+**Old step:**
+~~~
+git clone -b openshift https://github.com/alexbarbosa1989/dg8remote
+~~~
+**New step:**
+~~~
+git clone -b RHDG_8.4 https://github.com/alexbarbosa1989/dg8remote
+~~~
+
+2. In step [Deploying the remote query application in OpenShift](https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8#deploying_the_remote_query_application_in_openshift):
+Instead of using **fabric8** maven comand, should use **JKube** maven commands for aplication deployment on the Openshift environment:
+
+**Old step:**
+~~~
+mvn clean fabric8:deploy -Popenshift
+~~~
+**New step:**
+~~~
+mvn clean package oc:build -Popenshift
+mvn oc:apply -Popenshift
+~~~
+
+The other steps remains exactly the same as in the [Red Hat Developer blog](https://developers.redhat.com/articles/2022/05/31/integrate-spring-boot-application-red-hat-data-grid)
+
+# Changes summary:
+- Implementing new Data Grid native indexing annotations (https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.4/html/red_hat_data_grid_8.4_release_notes/rhdg-releases#data_grid_native_indexing_annotations)
+- Upgrade to RHDG 8.4 hotrod connector. (Infinispan 14.0.6.Final-redhat-00001)
+- Upgrade protostream 4 version. (Protostream 4.6.0.Final-redhat-00001)
+- Upgrade to Spring Boot starter 2.7.0
+- Removed fabric8 maven plugin (Deprecated)
+- Adding JKube maven plugin for Openshift deployment.
 
 
-1. Create an Openshift project and deploy a Data Grid Cluster via Operator. Here is a CR YAML example used for this example:
-~~~
-apiVersion: infinispan.org/v1
-kind: Infinispan
-metadata:
-  name: infinispan-test
-  namespace: dgtest
-spec:
-  expose:
-    type: LoadBalancer
-  service:
-    type: DataGrid
-  replicas: 2
-~~~
+#For local deployment
+1. Deploy a local Data Grid 8.4.0 or upper.
 
 2. Create the **books** cache in your Data Grid installation :
 XML format:
@@ -91,8 +116,8 @@ It will show as output the result list  from the query made on RemoteQuery.java,
 
 In the springboot log will show the query output as well
 ~~~
-2022-08-14 14:51:29.446  INFO 8270 --- [           main] c.r.dg8remote.RemoteQueryApplication     : Started RemoteQueryApplication in 3.434 seconds (JVM running for 3.886)
+2023-04-05 15:42:34.767  INFO 1 --- [           main] c.r.dg8remote.RemoteQueryApplication     : Started RemoteQueryApplication in 5.103 seconds (JVM running for 5.864)
 ...
-Book title 10
-2022
+Book title 20
+2010
 ~~~
