@@ -31,15 +31,6 @@ mvn oc:apply -Popenshift
 
 The other steps remains exactly the same as in the [Red Hat Developer blog](https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8)
 
-# Changes summary:
-- Implementing new Data Grid native indexing annotations (https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.4/html/red_hat_data_grid_8.4_release_notes/rhdg-releases#data_grid_native_indexing_annotations)
-- Upgrade to RHDG 8.4 hotrod connector. (Infinispan 14.0.6.Final-redhat-00001)
-- Upgrade protostream 4 version. (Protostream 4.6.0.Final-redhat-00001)
-- Upgrade to Spring Boot starter 2.7.0
-- Removed fabric8 maven plugin (Deprecated)
-- Adding JKube maven plugin for Openshift deployment.
-
-
 # For local deployment
 1. Deploy a local Data Grid 8.4.0 or upper.
 
@@ -121,3 +112,11 @@ In the springboot log will show the query output as well
 Book title 20
 2010
 ~~~
+
+# Changes summary:
+- Implementing new Data Grid native indexing annotations (https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.4/html/red_hat_data_grid_8.4_release_notes/rhdg-releases#data_grid_native_indexing_annotations)
+- Upgrade to RHDG 8.4 hotrod connector. (Infinispan 14.0.6.Final-redhat-00001)
+- Upgrade protostream 4 version. (Protostream 4.6.0.Final-redhat-00001)
+- Upgrade to Spring Boot starter 2.7.0
+- Removed fabric8 maven plugin (Deprecated)
+- Adding JKube maven plugin for Openshift deployment.
