@@ -1,8 +1,9 @@
 # Remote Query in Data Grid 8 using protobuf schema
 
+# For Openshift deployment
+
 For current branch, most of the steps remain as-is in the Red Hat Developer blog: https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8
 
-# For Openshift deployment
 **In order to deploy current branch project, there should be make below described Steps Chages**
 1. In step [Configuring the application to use the data grid cluster](https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8#configuring_the_application_to_use_the_data_grid_cluster):
 Instead of clone the **openshift** brach, must clone **RHDG_8.4** branch:
