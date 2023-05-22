@@ -2,6 +2,7 @@
 
 Based on Red Hat Data Grid 8 remote query example https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.3/html/querying_data_grid_caches/query-remote#querying-hot-rod_query-remote
 
+Full details on Red Hat Developer blog: https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8
 
 1. Create an Openshift project and deploy a Data Grid Cluster via Operator. Here is a CR YAML example used for this example:
 ~~~
