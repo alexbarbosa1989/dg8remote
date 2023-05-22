@@ -1,5 +1,5 @@
 # Remote Query in Data Grid 8 using protobuf schema
-# Important: current branch implements [new Data Grid native indexing annotations](https://github.com/alexbarbosa1989/dg8remote#changes-summary), which is designed to correctly on Data Grid 8.4.0+. For previus Data Grid versions refers the repository branch [openshift](https://github.com/alexbarbosa1989/dg8remote/tree/openshift) 
+# Important: current branch implements [new Data Grid native indexing annotations](https://github.com/alexbarbosa1989/dg8remote#changes-summary), which is designed to work correctly on Data Grid 8.4.0+. For previus Data Grid versions refers the repository branch [openshift](https://github.com/alexbarbosa1989/dg8remote/tree/openshift) 
 # For Openshift deployment
 
 For current branch, most of the steps remain as-is in the Red Hat Developer blog: https://developers.redhat.com/articles/2022/11/30/remotely-query-indexed-caches-data-grid-8
